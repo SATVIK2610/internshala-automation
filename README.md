@@ -45,5 +45,5 @@ module.exports = [
 To run the automation script, use the following command `node index.js`
 
 ## Acknowledgements
-[Puppeteer](https://pptr.dev/guides/what-is-puppeteer)
-[Node.js](https://nodejs.org/docs/latest/api/)
+* [Puppeteer](https://pptr.dev/guides/what-is-puppeteer)
+* [Node.js](https://nodejs.org/docs/latest/api/)
