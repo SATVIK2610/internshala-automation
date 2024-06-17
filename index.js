@@ -5,12 +5,14 @@ let dataFile = require("./data");
 
 async function main() {
 
+    // creating an instance of browser
     let browser = await pup.launch({
         headless: false,
         defaultViewport: false,
         args: ["--start-maximized"]
     });
 
+    // creating a page of a browser
     let pages = await browser.pages();
     tab = pages[0];
     await tab.goto("https://internshala.com/");
@@ -18,24 +20,28 @@ async function main() {
     await tab.type("#modal_email", id);
     await tab.type("#modal_password", pass);
     await tab.click("#modal_login_submit");
+    // "networkidle2" condition means that the navigation is considered complete when there are no more than 2 network connections for at least 500 milliseconds.
     await tab.waitForNavigation({ waitUntil: "networkidle2" });
     await tab.click(".nav-link.dropdown-toggle.profile_container .is_icon_header.ic-24-filled-down-arrow");
-
+    // tab.$$() works similar to querySelectorAll, it selects all the containers having the given id or class
     let profile_options = await tab.$$(".profile_options a");
     let app_urls = [];
+    // extracting the URL's of all the 11 profile options
     for (let i = 0; i < 11; i++) {
         let url = await tab.evaluate(function (ele) {
             return ele.getAttribute("href");
         }, profile_options[i]);
         app_urls.push(url);
     }
+    // if you want to use await to pause execution until the timeout completes, you need to wrap setTimeout in a promise.
     await new Promise(function (resolve, reject) {
         return setTimeout(resolve, 2000);
     });
     tab.goto("https://internshala.com" + app_urls[1]);
-
+    // program will wait till the element with given condition is rendered
     await tab.waitForSelector("#graduation-tab .ic-16-plus", { visible: true });
     await tab.click("#graduation-tab .ic-16-plus");
+    // fill the graduation form
     await graduation(dataFile[0]);
 
     await new Promise(function (resolve, reject) {
@@ -44,7 +50,7 @@ async function main() {
 
     await tab.waitForSelector(".next-button", { visible: true });
     await tab.click(".next-button");
-
+    // fill the training form
     await training(dataFile[0]);
 
     await new Promise(function (resolve, reject) {
@@ -56,7 +62,7 @@ async function main() {
 
     await tab.waitForSelector(".btn.btn-secondary.skip.skip-button", { visible: true });
     await tab.click(".btn.btn-secondary.skip.skip-button");
-
+    // fill the work sample form
     await workSample(dataFile[0]);
 
     await new Promise(function (resolve, reject) {
@@ -66,8 +72,9 @@ async function main() {
     await tab.waitForSelector("#save_work_samples", { visible: true });
     await tab.click("#save_work_samples");
 
-    // await tab.waitForSelector(".resume_download_mobile", {visible : true});
-    // await tab.click(".resume_download_mobile");                                // if you want to download resume.
+    await tab.waitForSelector(".resume_download_mobile", {visible : true});
+    // this will download the resume
+    await tab.click(".resume_download_mobile");                                
 
     await new Promise(function (resolve, reject) {
         return setTimeout(resolve, 1000);
