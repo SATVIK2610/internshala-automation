@@ -12,9 +12,9 @@ Internshala Automation is a powerful tool designed to streamline the process of 
 ## Prerequisites
 To get started with Internshala Automation, you need to have the following installed on your machine:
 
-*Node.js
-*NPM
-*puppeteer
+* Node.js
+* NPM
+* puppeteer
 
 Create a secret.js file in the root directory and add your Internshala credentials:
 ```
@@ -41,9 +41,9 @@ module.exports = [
   }
 ];
 ```
-Running the Script
+## Running the Script
 To run the automation script, use the following command `node index.js`
 
-Acknowledgements
+## Acknowledgements
 [Puppeteer](https://pptr.dev/guides/what-is-puppeteer)
 [Node.js](https://nodejs.org/docs/latest/api/)
