@@ -1,6 +1,6 @@
 # Internshala-Automation
 
-Internshala Automation is a powerful tool designed to streamline the process of building your resume on one of the most prominent internship platforms: Internshala. This project leverages the capabilities of Puppeteer, Node.js, and JavaScript to automate the tedious task of filling in resume details, thereby saving you a significant amount of time and effort.
+Internshala Automation is a powerful tool designed to auto-fill the job applications on one of the most prominent internship platforms: Internshala. This project leverages the capabilities of Puppeteer, Node.js, and JavaScript to automate the tedious task of filling in resume details, thereby saving you a significant amount of time and effort.
 
 # Features
 **Automated Login**: Automatically logs into your Internshala account using provided credentials.
